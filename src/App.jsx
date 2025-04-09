@@ -30,8 +30,8 @@
 // }
 
 // export default App;
-
-import React, { useState } from 'react';
+{/**
+  import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';
@@ -72,5 +72,44 @@ const App = () => {
     </>
   );
 };
+
+export default App;
+ */}
+
+// Topic useEffect
+import React, { useState, useEffect } from 'react';
+
+import Form from './Form';
+const App = () => {
+  const [count, setCount] = useState(0);
+  const [multi, setMulti] = useState(0);
+// 1. type
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //   setCount(count + 1);
+  // }, 2000);
+  // });
+
+  // 2. second type only one time render
+  // useEffect(() => {
+  //   setTimeout(() => { 
+  //     setCount(count + 1);
+  //   }, 2000);
+  // }, []);
+
+  // 3. third type its render only when count change according to the dependency array
+  useEffect(() => {
+    setMulti(count * 2);
+  }, [count]);
+  return (
+    <>
+      <h1>useEffect count = { count}</h1>
+      <p>useEffect is a Hook that lets you perform side effects in function components.</p>
+      <h2>Multiplication: {multi}</h2>
+      <button onClick={() => setCount(count + 1)}>click here</button>
+      <Form />
+    </>
+  )
+}
 
 export default App;
